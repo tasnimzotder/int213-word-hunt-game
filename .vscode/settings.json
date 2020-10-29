@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "int213-word-hunt-game\\.venv\\Scripts\\python.exe",
+    "python.formatting.provider": "yapf"
+}

@@ -1,0 +1,28 @@
+high_score:
+- score: 0
+- name: null
+max_time: 5
+player:
+- score: 0
+- name: Tasnim
+words:
+- CLIMATE
+- PYTHON
+- GITHUB
+- GREEN
+- GAME
+- ENERGY
+- PEACE
+- JAVASCRIPT
+- PROCESSOR
+- GOOGLE
+- MICROSOFT
+- AMAZON
+- PERFORMANCE
+- PUZZLE
+- CINEMA
+- SOLAR
+- APPLE
+- RESISTOR
+- SMARTPHONE
+words_count: 13

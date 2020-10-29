@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "int213-word-hunt-game"
+version = "0.1.0"
+description = "Let's hunt the lost words 🔍"
+authors = ["Tasnim Zotder <hello@tasnim.dev>"]
+maintainers = []
+repository = "https://github.com/tasnimzotder/int213-word-hunt-game"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+PyYAML = "^5.3.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
