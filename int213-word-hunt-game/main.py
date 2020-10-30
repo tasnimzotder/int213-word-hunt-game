@@ -47,7 +47,7 @@ def startGame():
     labelWelcome = tk.Label(master=frame3, text="Welcome").grid(row=0)
 
     labelWName = tk.Label(master=frame3,
-                          text=configFile['player'][1]['name']).grid(row=1)
+                          text=configFile['player']['name']).grid(row=1)
 
     wordList = [word for word in configFile['words']]
     size = numWords = configFile['words_count']
@@ -205,7 +205,7 @@ def main():
         nosWords = nosWordsField.get()
 
         data = readConfigFile()
-        data['player'][1]['name'] = str(username)
+        data['player']['name'] = str(username)
         data['words_count'] = int(nosWords)
         writeConfigFile(data)
         startGame()

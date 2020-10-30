@@ -1,10 +1,10 @@
 high_score:
-  - score: 0
-  - name: null
+  name: null
+  score: 0
 max_time: 5
 player:
-  - score: 0
-  - name: Tasnim
+  name: Tasnim
+  score: 0
 words:
   - CLIMATE
   - PYTHON
@@ -25,4 +25,4 @@ words:
   - APPLE
   - RESISTOR
   - SMARTPHONE
-words_count: 24
+words_count: 13
