@@ -30,7 +30,7 @@ Let's hunt the lost words 🔍
 1. Clone (Download) the project
 
 ```bash
-https://github.com/tasnimzotder/int213-word-hunt-game.git
+git clone https://github.com/tasnimzotder/int213-word-hunt-game.git
 ```
 
 2. Run the program
