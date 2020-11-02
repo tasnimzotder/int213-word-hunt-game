@@ -1,4 +1,4 @@
-![image](assets/int213-word-hunt-game.jpg)
+![image](assets/game_play.jpg)
 
 <p align="center">
     <img alt="GitHub issues" src="https://img.shields.io/github/issues/tasnimzotder/int213-word-hunt-game?style=flat-square">
@@ -63,6 +63,10 @@ bash run.sh
         &nbsp&nbsp&nbsp&nbsp
     </a>
 <p>
+
+## Screenshots
+
+![game setup](assets/game_setup.jpg)
 
 ## License
 
