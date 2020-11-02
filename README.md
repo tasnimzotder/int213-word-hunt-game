@@ -22,7 +22,7 @@ Let's hunt the lost words 🔍
 
 | Name   | Version | Website                                      |
 | ------ | ------- | -------------------------------------------- |
-| Python | ^3.9    | https://www.python.org/                      |
+| Python | ^3.8    | https://www.python.org/                      |
 | Poetry | ^1.14   | https://python-poetry.org/docs/#installation |
 
 ## Getting Started
