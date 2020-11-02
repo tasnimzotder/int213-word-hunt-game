@@ -9,47 +9,119 @@ Readme: https://github.com/tasnimzotder/int213-word-hunt-game/blob/master/README
 import string
 import random
 import tkinter as tk
+from tkinter import ttk
 import yaml
+import gameUtils as gutils
+import os
+
+root = tk.Tk()
+root.title("INT213 - Word Hunt Game")
+root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'x-48.ico'))
 
 pressedWord = ''
 prev = [0, 0]
 route = [0, 0]
 
-
-def readConfigFile():
-    with open(r'config.yaml') as file:
-        configFile = yaml.load(file, Loader=yaml.FullLoader)
-
-    return configFile
+# ***************> Game Starts <******************
 
 
-def writeConfigFile(data):
-    with open('config.yaml', 'w') as file:
-        yaml.dump(data, file)
+def gameHeader():
+    game_header = tk.Frame(root)
+    game_header.pack(fill=tk.X, side=tk.TOP)
+
+    heading = tk.Label(game_header,
+                       text='Word Hunt Game',
+                       font=('Helvetica', 23, 'bold'),
+                       fg='#313a57')
+    heading.pack(expand=True, fill=tk.X, pady=12)
+
+
+def gameFooter():
+    game_footer = tk.Frame(root)
+    game_footer.pack(fill=tk.X, side=tk.BOTTOM, pady=12)
+    # gh_link_text = r'https://github.com/tasnimzotder/int213-word-hunt-game'
+
+    footer = tk.Label(
+        game_footer,
+        text=
+        '© Tasnim Zotder, Souvik Ghoshal, Fizan Naik | 2020\nhttps://github.com/tasnimzotder/int213-word-hunt-game',
+    )
+    footer.pack(expand=True, fill=tk.X, pady=0)
 
 
 def startGame():
-    root = tk.Tk()
-    root.title("INT213 - Word Hunt Game")
-
     frame1 = tk.Frame(master=root, bg="red")
-    frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=False, padx=20, pady=12)
+    frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=20, pady=12)
 
     frame2 = tk.Frame(master=root)
     frame2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=10, pady=12)
 
-    configFile = readConfigFile()
+    configFile = gutils.readConfigFile()
+    levelNum = configFile['player']['level']
+    levelDetails = [
+        configFile['levels'][levelNum]['name'],
+        configFile['levels'][levelNum]['words']
+    ]
+    currScore = tk.StringVar()
+    currScore.set(0)
+
+    def updateScore():
+        configFile = gutils.readConfigFile()
+        score = configFile['player']['score']
+        configFile['player']['score'] = score + 1
+        currScore.set(score + 1)
+        gutils.writeConfigFile(configFile)
+        root.update_idletasks()
 
     # bg="#70889c"
     frame3 = tk.Frame(master=root)
     frame3.pack(fill=tk.BOTH, side=tk.RIGHT, padx=20, pady=30)
 
-    labelWelcome = tk.Label(master=frame3, text="Welcome").grid(row=0)
+    labelWelcome = tk.Label(master=frame3,
+                            text="Welcome",
+                            fg='#2c334a',
+                            font=('Helvetica', 12)).grid(row=0, column=0)
 
     labelWName = tk.Label(master=frame3,
-                          text=configFile['player']['name']).grid(row=1)
+                          text=configFile['player']['name'],
+                          fg='#2c334a',
+                          font=('Helvetica', 12, 'bold')).grid(row=0, column=1)
 
-    wordList = [word for word in configFile['words']]
+    labelLevelLbl = tk.Label(master=frame3,
+                             text="Level",
+                             fg='#2c334a',
+                             font=('Helvetica', 12)).grid(row=1, column=0)
+
+    labelLevel = tk.Label(master=frame3,
+                          text=levelDetails[0],
+                          fg='#2c334a',
+                          font=('Helvetica', 12, 'bold')).grid(row=1, column=1)
+
+    labelLevelLbl = tk.Label(master=frame3,
+                             text="Words",
+                             fg='#2c334a',
+                             font=('Helvetica', 12)).grid(row=2, column=0)
+
+    labelLevel = tk.Label(master=frame3,
+                          text=levelDetails[1],
+                          fg='#2c334a',
+                          font=('Helvetica', 12, 'bold')).grid(row=2, column=1)
+
+    labelLevelLbl = tk.Label(master=frame3,
+                             text="Score",
+                             fg='#2c334a',
+                             font=('Helvetica', 12)).grid(row=3, column=0)
+
+    labelLevel = tk.Label(master=frame3,
+                          textvariable=currScore,
+                          fg='#2c334a',
+                          font=('Helvetica', 12, 'bold')).grid(row=3, column=1)
+    wordList = []
+
+    with open(r'data/words.yaml') as file:
+        wordFile = yaml.load(file, Loader=yaml.FullLoader)
+        wordList = [word for word in wordFile['words']]
+
     size = numWords = configFile['words_count']
 
     arr = [[0 for x in range(size)] for y in range(size)]
@@ -128,7 +200,7 @@ def startGame():
                 font=('None %d overstrike' % (10)))
             check[int(dictionary.index(pressedWord))].grid()
             dictionary[dictionary.index(pressedWord)] = ''
-
+            updateScore()
             colourWord(pressedWord, True)
         else:
             colourWord(pressedWord, False)
@@ -141,7 +213,7 @@ def startGame():
 
         if (len(pressedWord) == 0):
             prev = newPressed
-            print(prev)
+            # print(prev)
             pressedWord = arr[x][y].char
             button[x][y].configure(bg='yellow')
 
@@ -186,44 +258,50 @@ def startGame():
                        height=1,
                        width=15,
                        anchor='c',
-                       bg="#d7f7f1",
+                       bg="#70889c",
+                       font=('Helvetica', 10),
+                       fg='white',
                        command=checkWord)
     checkW.grid()
 
-    root.mainloop()
-
 
 def main():
-    preRoot = tk.Tk()
-    preRoot.geometry("300x250")
-    frame = tk.Frame(preRoot)
-    frame.pack(pady=20, padx=26)
-    preRoot.title("[Setup] INT213 - Word Hunt Game")
+    gameHeader()
+
+    frame = tk.Frame(root)
+    frame.pack(pady=56, padx=180)
 
     def updateUserInput():
         username = userNameField.get()
-        nosWords = nosWordsField.get()
-
-        data = readConfigFile()
-        data['player']['name'] = str(username)
-        data['words_count'] = int(nosWords)
-        writeConfigFile(data)
+        gutils.gameLevel(str(levelInpCombo.get()), str(userNameField.get()))
         startGame()
-        preRoot.destroy()
+        frame.destroy()
 
-    tk.Label(frame, text="Name").grid(row=0)
+    tk.Label(frame, text="Name", font=('Helvetica', 15),
+             fg='#456263').grid(row=0, padx=10, pady=6)
     userNameField = tk.Entry(frame)
-    userNameField.grid(row=0, column=1)
+    userNameField.grid(row=0, column=1, ipady=6, ipadx=10)
 
-    tk.Label(frame, text="No. of Words").grid(row=1)
-    nosWordsField = tk.Entry(frame)
-    nosWordsField.grid(row=1, column=1)
+    tk.Label(frame, text="Game Level", font=('Helvetica', 15),
+             fg='#456263').grid(row=1)
+    levelInpCombo = ttk.Combobox(frame,
+                                 values=['Mini', 'Normal', 'Pro', 'Pro Max'])
+    levelInpCombo.grid(row=1, column=1, ipady=6, ipadx=10)
+    levelInpCombo.current(0)
 
-    tk.Button(frame, text="Enter", command=updateUserInput).grid(row=3,
-                                                                 column=1,
-                                                                 pady=8)
+    tk.Button(frame,
+              text="Start Game",
+              font=('Helvetica', 12),
+              bg='#70889c',
+              fg='white',
+              command=updateUserInput).grid(row=3,
+                                            column=1,
+                                            pady=8,
+                                            ipady=6,
+                                            ipadx=10)
 
-    preRoot.mainloop()
+    gameFooter()
+    root.mainloop()
 
 
 if __name__ == '__main__':
