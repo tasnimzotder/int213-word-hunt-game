@@ -8,7 +8,7 @@ repository = "https://github.com/tasnimzotder/int213-word-hunt-game"
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 PyYAML = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
