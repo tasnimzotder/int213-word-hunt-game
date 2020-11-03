@@ -17,13 +17,13 @@ def gameLevel(level: str, name: str):
     level = level.lower()
     currLevel: int
 
-    if level == 'noob':
+    if level == 'mini':
         currLevel = 1
     elif level == 'normal':
         currLevel = 2
     elif level == 'pro':
         currLevel = 3
-    elif level == 'legend':
+    elif level == 'pro max':
         currLevel = 4
 
     configFile = readConfigFile()
@@ -39,8 +39,8 @@ def gameLevel(level: str, name: str):
     return currLevel
 
 
-def gameScoreSet(score: int):
-    pass
+# def gameScoreSet(score: int):
+#     pass
 
 
-gameLevel('noob', 'Tasnim')
+# gameLevel('noob', 'Tasnim')
