@@ -30,7 +30,7 @@ levels:
     words: 23
 max_time: 5
 player:
-  level: 2
+  level: 1
   name: Tasnim
   score: 0
-words_count: 13
+words_count: 8
