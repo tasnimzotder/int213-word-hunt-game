@@ -12,10 +12,11 @@
 
 Let's hunt the lost words 🔍
 
-## Language Used
+## Languages Used
 
 <p align="center">
-    <img alt="python" src="assets/python.png" height="44px"/>
+    <img alt="python" src="assets/python-96.png" height="48px"/>
+    <img alt="python" src="assets/powershell-48.png" height="48px"/>
 </p>
 
 ## Requirements
