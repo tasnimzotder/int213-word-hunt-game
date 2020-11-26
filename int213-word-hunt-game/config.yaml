@@ -31,6 +31,6 @@ levels:
 max_time: 5
 player:
   level: 2
-  name: Tasnim
-  score: 3
+  name: Player
+  score: 0
 words_count: 13

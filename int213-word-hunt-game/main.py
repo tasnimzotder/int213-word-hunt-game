@@ -2,8 +2,20 @@
 INT213 - Word Hunt Game
 Let's hunt the lost words 🔍
 
+Author: Tasnim Zotder <hello@tasnim.dev>
 Repository: https://github.com/tasnimzotder/int213-word-hunt-game/
 Readme: https://github.com/tasnimzotder/int213-word-hunt-game/blob/master/README.md
+License: MIT
+"""
+
+# Reference(s)
+"""
+The word search logic is referenced to - 
+
+Repository: https://github.com/SpartanApple/PythonWordSearch
+Author: Mitchell Gale (SpartanApple)
+Year: 2020
+Month: October
 """
 
 import string
@@ -18,8 +30,8 @@ root = tk.Tk()
 root.title("INT213 - Word Hunt Game")
 root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'x-48.ico'))
 
-pressedWord = ''
-prev = [0, 0]
+wordPressed = ''
+previous = [0, 0]
 route = [0, 0]
 
 # ***************> Game Starts <******************
@@ -80,7 +92,8 @@ def startGame():
     labelWelcome = tk.Label(master=frame3,
                             text="Welcome",
                             fg='#2c334a',
-                            font=('Helvetica', 12)).grid(row=0, column=0)
+                            font=('Helvetica', 12, 'bold')).grid(row=0,
+                                                                 column=0)
 
     labelWName = tk.Label(master=frame3,
                           text=configFile['player']['name'],
@@ -132,10 +145,10 @@ def startGame():
     directionArr = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1],
                     [0, -1], [1, -1]]
 
-    class square:
+    class Square:
         status = False
-        char = ''
         filled = False
+        char = ''
 
     def fill(x, y, word, direction):
         for i in range(len(word)):
@@ -170,70 +183,78 @@ def startGame():
                             height=1,
                             width=15,
                             font=('None %d ' % (10)),
+                            fg='#254359',
+                            bg='#cbe5f7',
                             anchor='c')
         check[j].grid()
 
         fill(x, y, word, direction)
         return dictionary
 
-    def colourWord(pressedWord, valid):
+    def colourWord(wordPressed, valid):
         route[0] *= -1
         route[1] *= -1
-        for i in range(len(pressedWord)):
-            if valid == True or arr[prev[0] +
-                                    i * route[0]][prev[1] +
+        for i in range(len(wordPressed)):
+            if valid == True or arr[previous[0] +
+                                    i * route[0]][previous[1] +
                                                   i * route[1]].status == True:
-                button[prev[0] + i * route[0]][prev[1] + i * route[1]].config(
-                    bg='#535edb')
-                arr[prev[0] + i * route[0]][prev[1] +
-                                            i * route[1]].status = True
-            elif (arr[prev[0] + i * route[0]][prev[1] +
-                                              i * route[1]].status == False):
-                button[prev[0] + i * route[0]][prev[1] + i * route[1]].config(
-                    bg='#53dbb5')
+                button[previous[0] + i * route[0]][previous[1] +
+                                                   i * route[1]].config(
+                                                       bg='#535edb',
+                                                       fg='white')
+                arr[previous[0] + i * route[0]][previous[1] +
+                                                i * route[1]].status = True
+            elif (arr[previous[0] +
+                      i * route[0]][previous[1] +
+                                    i * route[1]].status == False):
+                button[previous[0] + i * route[0]][previous[1] +
+                                                   i * route[1]].config(
+                                                       bg='#255059',
+                                                       fg='white')
 
     def checkWord():
-        global pressedWord
+        global wordPressed
 
-        if pressedWord in dictionary:
-            check[int(dictionary.index(pressedWord))].configure(
-                font=('None %d overstrike' % (10)))
-            check[int(dictionary.index(pressedWord))].grid()
-            dictionary[dictionary.index(pressedWord)] = ''
+        if wordPressed in dictionary:
+            check[int(dictionary.index(wordPressed))].configure(
+                font=('Helvetica', 1), fg='#f0f0f0', bg='#f0f0f0')
+            check[int(dictionary.index(wordPressed))].grid()
+            dictionary[dictionary.index(wordPressed)] = ''
+
             updateScore()
-            colourWord(pressedWord, True)
+            colourWord(wordPressed, True)
         else:
-            colourWord(pressedWord, False)
-        pressedWord = ''
-        prev = [0, 0]
+            colourWord(wordPressed, False)
+        wordPressed = ''
+        previous = [0, 0]
 
     def buttonPress(x, y):
-        global pressedWord, prev, route
+        global wordPressed, previous, route
         newPressed = [x, y]
 
-        if (len(pressedWord) == 0):
-            prev = newPressed
-            # print(prev)
-            pressedWord = arr[x][y].char
-            button[x][y].configure(bg='yellow')
+        if (len(wordPressed) == 0):
+            previous = newPressed
+            # print(previous)
+            wordPressed = arr[x][y].char
+            button[x][y].configure(bg='yellow', fg='#255059')
 
-        elif (len(pressedWord) == 1 and (x - prev[0])**2 <= 1
-              and (y - prev[1])**2 <= 1 and newPressed != prev):
-            pressedWord += arr[x][y].char
-            button[x][y].configure(bg='yellow')
+        elif (len(wordPressed) == 1 and (x - previous[0])**2 <= 1
+              and (y - previous[1])**2 <= 1 and newPressed != previous):
+            wordPressed += arr[x][y].char
+            button[x][y].configure(bg='yellow', fg='#255059')
 
-            route = [x - prev[0], y - prev[1]]
-            prev = [x, y]
+            route = [x - previous[0], y - previous[1]]
+            previous = [x, y]
 
-        elif (len(pressedWord) > 1 and x - prev[0] == route[0]
-              and y - prev[1] == route[1]):
-            pressedWord += arr[x][y].char
-            button[x][y].configure(bg='yellow')
-            prev = [x, y]
+        elif (len(wordPressed) > 1 and x - previous[0] == route[0]
+              and y - previous[1] == route[1]):
+            wordPressed += arr[x][y].char
+            button[x][y].configure(bg='yellow', fg='#255059')
+            previous = [x, y]
 
     for x in range(size):
         for y in range(size):
-            arr[x][y] = square()
+            arr[x][y] = Square()
 
     for i in range(numWords):
         wordPlace(i, dictionary)
@@ -247,22 +268,24 @@ def startGame():
             button[x][y] = tk.Button(
                 frame1,
                 text=arr[x][y].char,
-                bg='#53dbb5',
+                bg='#255059',
+                fg='white',
                 width=2,
                 height=1,
+                relief=tk.FLAT,
                 command=lambda x=x, y=y: buttonPress(x, y))
             button[x][y].grid(row=x, column=y)
 
-    checkW = tk.Button(frame2,
-                       text="check Word",
-                       height=1,
-                       width=15,
-                       anchor='c',
-                       bg="#70889c",
-                       font=('Helvetica', 10),
-                       fg='white',
-                       command=checkWord)
-    checkW.grid()
+    checkWordBtn = tk.Button(frame2,
+                             text="Check Word",
+                             height=1,
+                             width=15,
+                             anchor='c',
+                             bg="#70889c",
+                             font=('Helvetica', 10),
+                             fg='white',
+                             command=checkWord)
+    checkWordBtn.grid()
 
 
 def main():

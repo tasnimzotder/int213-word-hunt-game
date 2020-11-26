@@ -8,25 +8,25 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/tasnimzotder/int213-word-hunt-game?style=flat-square">
 </p>
 
-# INT213 - Word Hunt Game
+# 🎮 INT213 - Word Hunt Game
 
 Let's hunt the lost words 🔍
 
-## Languages Used
+## 🔤 Languages Used
 
 <p align="center">
     <img alt="python" src="assets/python-96.png" height="48px"/>
     <img alt="python" src="assets/powershell-48.png" height="48px"/>
 </p>
 
-## Requirements
+## ⚓ Requirements
 
 | Name   | Version | Website                                      |
 | ------ | ------- | -------------------------------------------- |
 | Python | ^3.8    | https://www.python.org/                      |
 | Poetry | ^1.14   | https://python-poetry.org/docs/#installation |
 
-## Getting Started
+## 🎉 Getting Started
 
 1. Clone (Download) the project
 
@@ -48,7 +48,7 @@ b. Linux
 bash run.sh
 ```
 
-## Collaborators
+## 🧑‍🤝‍🧑 Collaborators
 
 <p align="center">
     <a href="https://github.com/tasnimzotder">
@@ -65,10 +65,19 @@ bash run.sh
     </a>
 <p>
 
-## Screenshots
+## 📷 Screenshots
 
 ![game setup](assets/game_setup.jpg)
 
-## License
+## 📃 References
 
-This project is under [MIT License](LICENSE)
+- **Poetry Docs**: [Poetry](https://python-poetry.org/)
+- **YAML Docs**: [Stack Abuse](https://stackabuse.com/reading-and-writing-yaml-to-a-file-in-python/)
+- **Tkinter GUI Docs**: [Real Python](https://realpython.com/python-gui-tkinter/)
+- **Word Search Logic**: [PythonWordSearch](https://github.com/SpartanApple/PythonWordSearch)
+
+## 📝 License
+
+## This project is licensed under [MIT License](LICENSE).
+
+## 💡 For more details view [Wiki](https://github.com/tasnimzotder/int213-word-hunt-game/wiki)
