@@ -10,7 +10,7 @@
 
 # 🎮 INT213 - Word Hunt Game
 
-Let's hunt the lost words 🔍
+### Let's hunt the lost words 🔍
 
 ## 🔤 Languages Used
 
@@ -78,6 +78,6 @@ bash run.sh
 
 ## 📝 License
 
-## This project is licensed under [MIT License](LICENSE).
+This project is licensed under [MIT License](LICENSE).
 
 ## 💡 For more details view [Wiki](https://github.com/tasnimzotder/int213-word-hunt-game/wiki)
