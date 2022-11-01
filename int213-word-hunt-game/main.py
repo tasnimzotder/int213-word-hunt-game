@@ -28,7 +28,7 @@ import os
 
 root = tk.Tk()
 root.title("INT213 - Word Hunt Game")
-root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'x-48.ico'))
+# root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'x-48.ico'))
 
 wordPressed = ''
 previous = [0, 0]

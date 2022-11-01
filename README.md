@@ -23,8 +23,8 @@
 
 | Name   | Version | Website                                      |
 | ------ | ------- | -------------------------------------------- |
-| Python | ^3.8    | https://www.python.org/                      |
-| Poetry | ^1.14   | https://python-poetry.org/docs/#installation |
+| Python | ^3.8    | <https://www.python.org/>                      |
+| Poetry | ^1.14   | <https://python-poetry.org/docs/#installation> |
 
 ## 🎉 Getting Started
 
@@ -46,6 +46,13 @@ b. Linux
 
 ```bash
 bash run.sh
+```
+
+3. Or to run the program in a docker container
+
+```bash
+docker build -t word-hunt-game .
+docker run -u=$(id -u $USER):$(id -g $USER) -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw --rm word-game
 ```
 
 ## 🧑‍🤝‍🧑 Collaborators
